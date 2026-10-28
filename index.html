@@ -11,7 +11,7 @@
             --success: #10b981;
             --error: #ef4444;
             --bg: #0f172a;
-            --card-bg: rgba(30, 41, 59, 0.75);
+            --card-bg: rgba(30, 41, 59, 0.85);
             --text-main: #e2e8f0;
             --text-sub: #94a3b8;
         }
@@ -41,14 +41,14 @@
         .skyline {
             position: absolute;
             bottom: 0; left: 0; width: 100%; height: 120px;
-            background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 20" preserveAspectRatio="none" xmlns="http://w3.org"><path d="M0,20 L0,15 L5,15 L5,10 L10,10 L10,18 L15,18 L15,5 L20,5 L20,12 L25,12 L25,2 L30,2 L30,15 L40,15 L40,8 L45,8 L45,20 Z" fill="rgba(56,189,248,0.1)"/></svg>');
+            background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 20" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,20 L0,15 L5,15 L5,10 L10,10 L10,18 L15,18 L15,5 L20,5 L20,12 L25,12 L25,2 L30,2 L30,15 L40,15 L40,8 L45,8 L45,20 Z" fill="rgba(56,189,248,0.1)"/></svg>');
             background-size: cover;
             background-repeat: no-repeat;
             z-index: 0;
         }
         .hero-content { position: relative; z-index: 1; }
         .hero h1 {
-            font-size: 28px;
+            font-size: 30px;
             font-weight: 800;
             letter-spacing: 2px;
             margin-bottom: 8px;
@@ -72,8 +72,6 @@
             border-radius: 16px;
             padding: 20px;
             margin-bottom: 20px;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
             box-shadow: 0 8px 32px rgba(0,0,0,0.3);
         }
 
@@ -95,123 +93,79 @@
             border-radius: 3px;
         }
 
-        .text-content {
-            font-size: 14px;
-            color: #cbd5e1;
-            text-align: justify;
-            line-height: 1.6;
-        }
+        .text-content { font-size: 14px; color: #cbd5e1; text-align: justify; line-height: 1.6; }
 
-        /* 故事子卡片样式 */
-        .story-section {
-            margin-top: 15px;
-            padding: 12px;
-            background: rgba(15, 23, 42, 0.4);
-            border-radius: 10px;
-            border-left: 2px solid var(--primary);
+        /* === 科创故事横向滑动区 === */
+        .story-scroll-container {
+            display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch; gap: 16px; padding: 10px 0 15px;
+            scrollbar-width: none; -ms-overflow-style: none;
         }
-        .story-title {
-            font-size: 14px;
-            font-weight: bold;
-            color: #f8fafc;
-            margin-bottom: 6px;
-        }
+        .story-scroll-container::-webkit-scrollbar { display: none; }
 
-        /* 视频播放器通用样式 */
-        .video-wrapper {
-            margin-top: 14px;
-            width: 100%;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            background: #000;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        .story-card {
+            flex: 0 0 85%; scroll-snap-align: center;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 12px; padding: 18px;
+            display: flex; flex-direction: column; justify-content: space-between;
         }
-        .video-wrapper video {
-            width: 100%;
-            display: block;
-            object-fit: cover;
+        .story-tag {
+            display: inline-block; font-size: 12px; color: #38bdf8;
+            background: rgba(56, 189, 248, 0.1); padding: 4px 8px;
+            border-radius: 4px; margin-bottom: 12px; align-self: flex-start;
         }
+        .story-title { font-size: 16px; font-weight: bold; color: #fff; margin-bottom: 10px; line-height: 1.3; }
+        .story-desc { font-size: 13px; color: #94a3b8; margin-bottom: 14px; text-align: justify; flex-grow: 1; }
+        .story-spirit { font-size: 12px; color: #facc15; border-top: 1px dashed rgba(250, 204, 21, 0.3); padding-top: 8px; }
 
-        /* 第二部分：芯片交互区 */
-        .chip-interaction {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 20px 0 10px;
-        }
+        /* 芯片交互与视频区 */
+        .chip-interaction { display: flex; flex-direction: column; align-items: center; margin: 20px 0 10px; }
         .chip-btn {
-            width: 90px;
-            height: 90px;
-            background: rgba(56, 189, 248, 0.03);
-            border: 2px dashed rgba(56, 189, 248, 0.4);
-            border-radius: 22px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            position: relative;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 90px; height: 90px;
+            background: rgba(56, 189, 248, 0.05);
+            border: 2px dashed rgba(56, 189, 248, 0.5);
+            border-radius: 20px; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; position: relative; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        .chip-btn::after {
-            content: 'NFC';
-            color: var(--primary);
-            font-weight: bold;
-            font-family: monospace;
-            letter-spacing: 2px;
-            font-size: 16px;
-        }
+        .chip-btn::after { content: 'NFC'; color: var(--primary); font-weight: bold; font-family: monospace; letter-spacing: 2px; }
         .chip-btn::before {
             content: ''; position: absolute; width: 120%; height: 120%;
-            border: 1px solid rgba(56, 189, 248, 0.15); border-radius: 26px;
-            animation: pulse 2s infinite;
+            border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 24px; animation: pulse 2s infinite;
         }
-        @keyframes pulse {
-            0% { transform: scale(0.95); opacity: 1; }
-            100% { transform: scale(1.25); opacity: 0; }
-        }
-        .chip-btn.active {
-            background: rgba(56, 189, 248, 0.15);
-            border: 2px solid #38bdf8;
-            box-shadow: 0 0 25px rgba(56, 189, 248, 0.6);
-            transform: scale(0.95);
-        }
+        @keyframes pulse { 0% { transform: scale(0.9); opacity: 1; } 100% { transform: scale(1.2); opacity: 0; } }
+        .chip-btn.active { background: rgba(56, 189, 248, 0.2); border: 2px solid #38bdf8; box-shadow: 0 0 20px rgba(56, 189, 248, 0.4); transform: scale(0.95); }
         
         .chip-result {
-            margin-top: 15px;
-            padding: 15px;
-            background: rgba(15, 23, 42, 0.8);
-            border-left: 3px solid var(--success);
-            border-radius: 0 8px 8px 0;
-            font-size: 13.5px;
-            color: #a7f3d0;
-            display: none;
+            margin-top: 15px; padding: 15px;
+            background: rgba(15, 23, 42, 0.6); border-left: 3px solid var(--success);
+            border-radius: 0 8px 8px 0; font-size: 13.5px; color: #a7f3d0;
+            display: none; animation: fadeIn 0.6s ease forwards;
         }
         .chip-result strong { color: #38bdf8; display: block; margin-bottom: 6px; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* 第三部分：时空胶囊 */
+        /* 视频封装 */
+        .video-wrapper {
+            margin-top: 15px; width: 100%; border-radius: 12px;
+            overflow: hidden; border: 1px solid rgba(56, 189, 248, 0.3);
+            background: #000; box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+        .video-wrapper video { width: 100%; display: block; object-fit: cover; }
+
+        /* 时空胶囊 */
         .capsule-area { display: flex; flex-direction: column; gap: 12px; margin-top: 10px; }
         textarea {
-            width: 100%;
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid rgba(148, 163, 184, 0.3);
-            color: #fff;
-            padding: 12px;
-            border-radius: 12px;
-            resize: none;
-            height: 85px;
-            font-family: inherit;
-            font-size: 14px;
-            transition: all 0.3s;
+            width: 100%; background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(148, 163, 184, 0.3); color: #fff;
+            padding: 12px; border-radius: 12px; resize: none; height: 85px;
+            font-family: inherit; font-size: 14px; transition: all 0.3s;
         }
-        textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 10px rgba(56, 189, 248, 0.2); }
-        
+        textarea:focus { outline: none; border-color: var(--primary); }
         .submit-btn {
             background: linear-gradient(90deg, #0ea5e9, #6366f1);
             color: white; border: none; padding: 12px; border-radius: 12px;
-            font-size: 15px; font-weight: 600; cursor: pointer;
-            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
-            transition: all 0.2s;
+            font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.2s;
         }
         .submit-btn:active { transform: scale(0.97); }
 
@@ -219,9 +173,7 @@
             font-size: 12px; color: var(--text-sub); margin-top: 15px;
             text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid rgba(148,163,184,0.1); padding-bottom: 5px;
         }
-        .capsule-logs {
-            max-height: 120px; overflow-y: auto; margin-top: 8px; display: flex; flex-direction: column; gap: 8px;
-        }
+        .capsule-logs { max-height: 120px; overflow-y: auto; margin-top: 8px; display: flex; flex-direction: column; gap: 8px; }
         .log-item {
             background: rgba(15, 23, 42, 0.5); padding: 10px; border-radius: 8px;
             font-size: 13px; color: #cbd5e1; border: 1px dashed rgba(56,189,248,0.1);
@@ -229,7 +181,7 @@
         }
         @keyframes slideIn { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
 
-        /* 第四部分：趣味问答互动区 */
+        /* 趣味问答区 */
         .quiz-container { display: flex; flex-direction: column; gap: 16px; margin-top: 10px; }
         .quiz-item { background: rgba(15, 23, 42, 0.4); padding: 14px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); }
         .quiz-question { font-size: 14px; font-weight: 600; color: #f8fafc; margin-bottom: 10px; }
@@ -248,77 +200,115 @@
         }
 
         footer { text-align: center; padding: 20px; font-size: 11px; color: #475569; letter-spacing: 1px; font-family: monospace; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
-    <!-- 顶部科幻天际线 -->
     <div class="hero">
         <div class="skyline"></div>
         <div class="hero-content">
             <h1>Stories of Invention</h1>
-            <p>> Initializing Zhangjiang Time Capsule...</p>
+            <p>> 张江科创·时空胶囊...</p>
         </div>
     </div>
 
     <div class="container">
-        <!-- 📖 第一部分：科创足迹 -->
+        
+        <!-- 第一部分：科创故事滑动区 -->
         <div class="card">
-            <h2>科创足迹 / The Footprint</h2>
-            <p class="text-content">
-                从三十年前的农田，到如今的“中国药谷”与“硅谷”。张江科学城的崛起，是无数科研人员日夜奋斗的缩影。在这里，我们见证了从 0 到 1 的突破。
+            <h2>张江群星闪耀时 / The Stories</h2>
+            <p class="text-content" style="font-size: 13px; color: #94a3b8; margin-bottom: 10px;">
+                左右滑动，倾听这座科学城从0到1的突破故事：
             </p>
             
-            <div class="story-section">
-                <div class="story-title">车库里的十年长跑（生物医药）</div>
-                <p class="text-content" style="font-size: 13px; color: var(--text-sub);">陈力团队从张江车库起步，耗时10年研发出全球首创糖尿病口服新药多格列艾汀。</p>
-            </div>
-            <div class="story-section">
-                <div class="story-title">世界顶级激光装置（大科学重器）</div>
-                <p class="text-content" style="font-size: 13px; color: var(--text-sub);">李儒新院士带领青年团队，实现10拍瓦激光放大输出，打破美国长期垄断。</p>
+            <div class="story-scroll-container">
+                <!-- 故事1 -->
+                <div class="story-card">
+                    <div>
+                        <span class="story-tag">生物医药</span>
+                        <div class="story-title">车库里的十年长跑：国产糖尿病新药</div>
+                        <div class="story-desc">
+                            陈力团队从张江的车库起步，耗时10年，递交36万多页申报材料（装满一集装箱）。依托张江共享实验室，研发出全球首创糖尿病口服新药多格列艾汀，完成从0到1的突破。
+                        </div>
+                    </div>
+                    <div class="story-spirit">精神：长期主义 / 不惧失败</div>
+                </div>
+                <!-- 故事2 -->
+                <div class="story-card">
+                    <div>
+                        <span class="story-tag">大科学重器</span>
+                        <div class="story-title">“尖刀连”：打造世界顶级激光装置</div>
+                        <div class="story-desc">
+                            李儒新院士带领青年团队，日夜攻坚超强超短激光实验装置。实现10拍瓦激光放大输出，成为世界首台同级别装置并登上《科学》，打破美国长期垄断。
+                        </div>
+                    </div>
+                    <div class="story-spirit">精神：青年担当 / 为国攻坚</div>
+                </div>
+                <!-- 故事3 -->
+                <div class="story-card">
+                    <div>
+                        <span class="story-tag">青年创业</span>
+                        <div class="story-title">沈亦晨：海归回国攻关光芯片</div>
+                        <div class="story-desc">
+                            放弃海外机会回到张江，创办曦智科技。从寥寥数人起步，历经多次技术迭代，在张江产业土壤上，将实验室论文变成可以量产的光计算芯片，解决AI大模型算力瓶颈。
+                        </div>
+                    </div>
+                    <div class="story-spirit">精神：敢闯前沿无人区 / 产业落地</div>
+                </div>
+                <!-- 故事4 -->
+                <div class="story-card">
+                    <div>
+                        <span class="story-tag">青春坚守</span>
+                        <div class="story-title">地下30米的硬X射线装置</div>
+                        <div class="story-desc">
+                            总长超3公里的硬X射线自由电子激光装置深埋地下。大批青年科研人员奔赴张江，钱厚俊带回海外技术构想，团队要求毫米级精度、零容错标准，默默打磨大国重器。
+                        </div>
+                    </div>
+                    <div class="story-spirit">精神：精益求精 / 坐冷板凳</div>
+                </div>
             </div>
         </div>
 
-        <!-- 🎬 第二部分：点触未来与视频 -->
+        <!-- 第二部分：芯片交互区与视频 -->
         <div class="card">
-            <h2>点触未来 / Invention</h2>
+            <h2>Invention / 点触未来</h2>
             <p class="text-content" style="margin-bottom: 15px;">
-                点击下方芯片，激活微观视界：
+                点击下方芯片，激活微观视界与制作工艺展示：
             </p>
             <div class="chip-interaction">
                 <div class="chip-btn" id="chipBtn" onclick="activateChip()"></div>
-                
-                <!-- 激活后显示的内容 -->
                 <div class="chip-result" id="chipResult">
                     <strong>[ 智能感应激活成功 ]</strong>
-                    芯片微光闪烁，化作数据流。科技与生命科学，在此刻完成跨时空交汇。
+                    数据流正在解析...<br>
+                    ▸ 芯片微光闪烁，化作人体经络图<br>
+                    ▸ 科技与中医药，在此刻完成跨时空交汇。
                 </div>
             </div>
-
-            <!-- 视频1：芯片制作展示 -->
+            
+            <!-- 视频1：芯片制作/概念展示 -->
             <div class="video-wrapper" id="videoWrapper1" style="display: none;">
-                <video id="techVideo1" src="chip_make.mp4" controls playsinline webkit-playsinline preload="metadata"></video>
+                <video id="techVideo1" src="chip_make.mp4" controls playsinline webkit-playsinline preload="none"></video>
             </div>
         </div>
 
-        <!-- 🤖 新增：AI 功能展示区 -->
+        <!-- 新增：AI 功能展示区 -->
         <div class="card">
             <h2>AI 赋能 / AI Function</h2>
-            <p class="text-content">
-                前沿的人工智能技术，正在加速科学的发现与创新。看看 AI 是如何发挥作用的：
+            <p class="text-content" style="margin-bottom: 15px;">
+                前沿人工智能技术，正在加速科学的发现与创新：
             </p>
-            <!-- 视频2：AI 功能演示（默认显示） -->
+            <!-- 视频2：AI 功能演示 -->
             <div class="video-wrapper">
-                <video src="ai_function.mp4" controls playsinline webkit-playsinline preload="metadata"></video>
+                <!-- 注意这里 preload="none"，防止一打开网页就强行下载大视频导致卡死 -->
+                <video src="ai_function.mp4" controls playsinline webkit-playsinline preload="none" poster="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=600&auto=format&fit=crop"></video>
             </div>
         </div>
 
-        <!-- ✉️ 第三部分：时空胶囊 -->
+        <!-- 第三部分：时空胶囊 -->
         <div class="card">
-            <h2>写入时空胶囊 / Explore</h2>
+            <h2>Explore / 写入时空胶囊</h2>
             <p class="text-content" style="margin-bottom: 15px;">
-                实体书签承载了物理的记忆，这里是它的数字延伸。留下你的期许：
+                实体书签承载了物理的记忆，这里是它的数字延伸。留下你的期许，将它封存：
             </p>
             <div class="capsule-area">
                 <textarea id="userMsg" placeholder="例如：希望未来我能用AI研发出治愈绝症的药物..."></textarea>
@@ -331,43 +321,44 @@
             </div>
         </div>
 
-        <!-- 🧠 第四部分：趣味问答 -->
+        <!-- 第四部分：趣味问答区 -->
         <div class="card">
             <h2>知识问答 / Quiz</h2>
             <div class="quiz-container">
-                <!-- 题目 1 -->
+                
+                <!-- 新增热身题 -->
                 <div class="quiz-item">
-                    <div class="quiz-question">1. 张江科学城的“硬X射线自由电子激光装置”对精度的要求达到了什么级别？</div>
+                    <div class="quiz-question">1. 本款文创书签中所采用的“手机一碰就能弹出网页”的技术原理是什么？</div>
                     <div class="quiz-options">
-                        <button class="option-btn" onclick="checkAnswer(this, false)">厘米级</button>
-                        <button class="option-btn" onclick="checkAnswer(this, true)">毫米级</button>
-                        <button class="option-btn" onclick="checkAnswer(this, false)">米级</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false)">A. 蓝牙（Bluetooth）短距离无线传输技术</button>
+                        <button class="option-btn" onclick="checkAnswer(this, true)">B. NFC（近场通信）无线射频识别技术</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false)">C. 红外线光学遥感传输技术</button>
+                    </div>
+                    <div class="quiz-explain">解析：NFC（Near Field Communication）允许设备在几厘米内进行非接触式数据交换，无需配对，一碰即连。</div>
+                </div>
+
+                <!-- 原有题目 1 -->
+                <div class="quiz-item">
+                    <div class="quiz-question">2. 张江科学城的“硬X射线自由电子激光装置”对精度的要求达到了什么级别？</div>
+                    <div class="quiz-options">
+                        <button class="option-btn" onclick="checkAnswer(this, false)">A. 厘米级</button>
+                        <button class="option-btn" onclick="checkAnswer(this, true)">B. 毫米级</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false)">C. 米级</button>
                     </div>
                     <div class="quiz-explain">解析：地下30米的装置要求极高的精度，毫米级、零容错是科研人员的日常标准。</div>
                 </div>
                 
-                <!-- 题目 2 -->
-                <div class="quiz-item">
-                    <div class="quiz-question">2. NFC 芯片在本次书签设计中的主要作用是？</div>
-                    <div class="quiz-options">
-                        <button class="option-btn" onclick="checkAnswer(this, false)">提供电能发光</button>
-                        <button class="option-btn" onclick="checkAnswer(this, true)">触碰后自动打开数字网页</button>
-                        <button class="option-btn" onclick="checkAnswer(this, false)">记录地理位置</button>
-                    </div>
-                    <div class="quiz-explain">解析：NFC（近场通信）用于快速传递数据，在这里它将物理书签与数字网页连接起来。</div>
-                </div>
             </div>
         </div>
 
     </div>
 
     <footer>
-        TRUST THE PROCESS<br>
-        © 张江学区科创大赛作品
+        TRUST THE PROCESS<br>© 张江学区科创大赛作品
     </footer>
 
     <script>
-        // ================= 1. 芯片点击交互与视频控制 =================
+        // 1. 芯片激活与视频播放逻辑
         let isChipActive = false;
         function activateChip() {
             const btn = document.getElementById('chipBtn');
@@ -378,50 +369,35 @@
             if (isChipActive) return;
             isChipActive = true;
 
-            // 按钮动效
             btn.classList.add('active');
             btn.innerHTML = '⚡';
             btn.style.color = '#facc15';
             btn.style.fontSize = '30px';
 
-            // 显示结果与视频
             result.style.display = 'block';
             wrapper1.style.display = 'block';
             
-            // 尝试自动播放视频
             if(video1) {
                 video1.play().catch(e => console.log("自动播放被阻止，需用户手动点击"));
             }
-
             if (navigator.vibrate) navigator.vibrate([100, 50, 100]);
         }
 
-        // ================= 2. 时空胶囊留言板 (带本地存储) =================
-        // 页面加载时读取本地存储的数据
-        document.addEventListener('DOMContentLoaded', () => {
-            loadMessages();
-        });
+        // 2. 胶囊留言板（本地存储）
+        document.addEventListener('DOMContentLoaded', () => { loadMessages(); });
 
         function saveMessage() {
             const msg = document.getElementById('userMsg').value;
-            if (!msg.trim()) {
-                alert("胶囊是空的，请写点什么吧~");
-                return;
-            }
-
-            // 获取当前时间
+            if (!msg.trim()) { alert("胶囊是空的，请写点什么吧~"); return; }
+            
             const now = new Date();
             const timeStr = `${now.getMonth()+1}月${now.getDate()}日 ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
-            
-            // 创建新留言对象
             const newLog = { text: msg, time: timeStr };
 
-            // 保存到 localStorage
             let logs = JSON.parse(localStorage.getItem('zjCapsules')) || [];
-            logs.unshift(newLog); // 放到最前面
+            logs.unshift(newLog);
             localStorage.setItem('zjCapsules', JSON.stringify(logs));
-
-            // 清空输入框并重新渲染
+            
             document.getElementById('userMsg').value = "";
             loadMessages();
         }
@@ -434,7 +410,6 @@
                 container.innerHTML = '<div class="log-item" style="opacity: 0.5; text-align: center;">暂无记录，快来写下第一条吧</div>';
                 return;
             }
-
             container.innerHTML = '';
             logs.forEach(log => {
                 const div = document.createElement('div');
@@ -444,29 +419,22 @@
             });
         }
 
-        // ================= 3. 趣味问答逻辑 =================
+        // 3. 趣味问答逻辑
         function checkAnswer(btn, isCorrect) {
-            // 获取当前题目块
             const quizItem = btn.closest('.quiz-item');
             const buttons = quizItem.querySelectorAll('.option-btn');
             const explain = quizItem.querySelector('.quiz-explain');
-
-            // 禁用所有按钮，防止重复点击
+            
             buttons.forEach(b => b.disabled = true);
-
             if (isCorrect) {
                 btn.classList.add('correct');
             } else {
                 btn.classList.add('wrong');
-                // 答错时高亮显示正确答案
                 buttons.forEach(b => {
-                    if(b.getAttribute('onclick').includes('true')) {
-                        b.classList.add('correct');
-                    }
+                    // 如果字符串里包含 true，说明是正确选项，高亮它
+                    if(b.getAttribute('onclick').includes('true')) b.classList.add('correct');
                 });
             }
-
-            // 显示解析
             explain.style.display = 'block';
         }
     </script>
