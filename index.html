@@ -3,255 +3,264 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>张江qq科创 · 时空胶囊  1234567 </title>
+    <title>张江科创 · 时空胶囊</title>
     <style>
-        /* 基础重置与全局样式 */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        /* 核心重置与全局变量 */
+        :root {
+            --primary: #38bdf8;
+            --success: #10b981;
+            --error: #ef4444;
+            --bg: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.75);
+            --text-main: #e2e8f0;
+            --text-sub: #94a3b8;
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        
         body {
-            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
-            background-color: #0f172a; /* 深空蓝背景 */
-            color: #e2e8f0;
+            font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
+            background-image: radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 25%),
+                              radial-gradient(circle at 85% 30%, rgba(99, 102, 241, 0.08), transparent 25%);
         }
 
-        /* 顶部头图区域 */
+        /* 顶部头图区 */
         .hero {
-            height: 40vh;
-            background: linear-gradient(180deg, rgba(15,23,42,0.3) 0%, #0f172a 100%), 
-                        url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop') center/cover;
+            height: 35vh;
+            position: relative;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            padding: 20px;
-            position: relative;
+            padding: 24px;
+            background: linear-gradient(180deg, rgba(15,23,42,0) 0%, rgba(15,23,42,1) 100%);
         }
+        .skyline {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 120px;
+            background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 20" preserveAspectRatio="none" xmlns="http://w3.org"><path d="M0,20 L0,15 L5,15 L5,10 L10,10 L10,18 L15,18 L15,5 L20,5 L20,12 L25,12 L25,2 L30,2 L30,15 L40,15 L40,8 L45,8 L45,20 Z" fill="rgba(56,189,248,0.1)"/></svg>');
+            background-size: cover;
+            background-repeat: no-repeat;
+            z-index: 0;
+        }
+        .hero-content { position: relative; z-index: 1; }
         .hero h1 {
             font-size: 28px;
-            font-weight: 600;
+            font-weight: 800;
             letter-spacing: 2px;
-            margin-bottom: 5px;
-            background: -webkit-linear-gradient(45deg, #38bdf8, #818cf8);
+            margin-bottom: 8px;
+            background: linear-gradient(45deg, #38bdf8, #818cf8, #c084fc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
         .hero p {
             font-size: 14px;
-            color: #94a3b8;
-            font-style: italic;
+            color: var(--text-sub);
+            font-family: 'Courier New', Courier, monospace;
+            letter-spacing: 1px;
         }
 
-        /* 内容卡片容器 */
-        .container { padding: 20px; }
-
+        /* 卡片布局 */
+        .container { padding: 0 20px 30px; position: relative; z-index: 1; margin-top: -10px;}
+        
         .card {
-            background: rgba(30, 41, 59, 0.7);
-            border: 1px solid rgba(56, 189, 248, 0.2);
+            background: var(--card-bg);
+            border: 1px solid rgba(56, 189, 248, 0.15);
             border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 24px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            padding: 20px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
         }
 
         .card h2 {
-            font-size: 18px;
-            color: #38bdf8;
-            margin-bottom: 15px;
+            font-size: 17px;
+            color: var(--text-main);
+            margin-bottom: 14px;
             display: flex;
             align-items: center;
+            font-weight: 600;
         }
         .card h2::before {
             content: '';
             display: inline-block;
-            width: 4px;
+            width: 5px;
             height: 16px;
-            background: #38bdf8;
+            background: linear-gradient(to bottom, #38bdf8, #6366f1);
             margin-right: 10px;
-            border-radius: 2px;
+            border-radius: 3px;
         }
 
         .text-content {
-            font-size: 15px;
+            font-size: 14px;
             color: #cbd5e1;
             text-align: justify;
+            line-height: 1.6;
         }
 
-        /* 交互区域：芯片与经络 */
+        /* 故事子卡片样式 */
+        .story-section {
+            margin-top: 15px;
+            padding: 12px;
+            background: rgba(15, 23, 42, 0.4);
+            border-radius: 10px;
+            border-left: 2px solid var(--primary);
+        }
+        .story-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: #f8fafc;
+            margin-bottom: 6px;
+        }
+
+        /* 视频播放器通用样式 */
+        .video-wrapper {
+            margin-top: 14px;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            background: #000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+        .video-wrapper video {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* 第二部分：芯片交互区 */
         .chip-interaction {
-            text-align: center;
-            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0 10px;
         }
         .chip-btn {
-            width: 120px;
-            height: 120px;
-            background: url('https://api.iconify.design/ph:cpu.svg?color=%2338bdf8') no-repeat center center / 60%;
-            border: 2px dashed rgba(56, 189, 248, 0.5);
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin: 0 auto;
+            width: 90px;
+            height: 90px;
+            background: rgba(56, 189, 248, 0.03);
+            border: 2px dashed rgba(56, 189, 248, 0.4);
+            border-radius: 22px;
             display: flex;
             align-items: center;
             justify-content: center;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .chip-btn:active { transform: scale(0.95); }
+        .chip-btn::after {
+            content: 'NFC';
+            color: var(--primary);
+            font-weight: bold;
+            font-family: monospace;
+            letter-spacing: 2px;
+            font-size: 16px;
+        }
+        .chip-btn::before {
+            content: ''; position: absolute; width: 120%; height: 120%;
+            border: 1px solid rgba(56, 189, 248, 0.15); border-radius: 26px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 1; }
+            100% { transform: scale(1.25); opacity: 0; }
+        }
+        .chip-btn.active {
+            background: rgba(56, 189, 248, 0.15);
+            border: 2px solid #38bdf8;
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.6);
+            transform: scale(0.95);
+        }
         
         .chip-result {
             margin-top: 15px;
-            height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            color: #facc15;
-            opacity: 0;
-            transition: opacity 0.5s ease;
+            padding: 15px;
+            background: rgba(15, 23, 42, 0.8);
+            border-left: 3px solid var(--success);
+            border-radius: 0 8px 8px 0;
+            font-size: 13.5px;
+            color: #a7f3d0;
+            display: none;
         }
-        .chip-result.show { opacity: 1; }
+        .chip-result strong { color: #38bdf8; display: block; margin-bottom: 6px; }
 
-        /* 留言板区域 */
-        .capsule-area {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
+        /* 第三部分：时空胶囊 */
+        .capsule-area { display: flex; flex-direction: column; gap: 12px; margin-top: 10px; }
         textarea {
             width: 100%;
-            background: #0f172a;
-            border: 1px solid #334155;
-            color: #e2e8f0;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            color: #fff;
             padding: 12px;
-            border-radius: 8px;
+            border-radius: 12px;
             resize: none;
-            height: 80px;
+            height: 85px;
             font-family: inherit;
+            font-size: 14px;
+            transition: all 0.3s;
         }
-        textarea:focus { outline: none; border-color: #38bdf8; }
+        textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 10px rgba(56, 189, 248, 0.2); }
         
         .submit-btn {
             background: linear-gradient(90deg, #0ea5e9, #6366f1);
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: opacity 0.2s;
+            color: white; border: none; padding: 12px; border-radius: 12px;
+            font-size: 15px; font-weight: 600; cursor: pointer;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+            transition: all 0.2s;
         }
-        .submit-btn:active { opacity: 0.8; }
+        .submit-btn:active { transform: scale(0.97); }
 
-        .msg-display {
-            margin-top: 15px;
-            font-size: 14px;
-            color: #10b981;
-            text-align: center;
-            min-height: 20px;
+        .capsule-list-title {
+            font-size: 12px; color: var(--text-sub); margin-top: 15px;
+            text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid rgba(148,163,184,0.1); padding-bottom: 5px;
+        }
+        .capsule-logs {
+            max-height: 120px; overflow-y: auto; margin-top: 8px; display: flex; flex-direction: column; gap: 8px;
+        }
+        .log-item {
+            background: rgba(15, 23, 42, 0.5); padding: 10px; border-radius: 8px;
+            font-size: 13px; color: #cbd5e1; border: 1px dashed rgba(56,189,248,0.1);
+            animation: slideIn 0.3s ease-out;
+        }
+        @keyframes slideIn { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
+
+        /* 第四部分：趣味问答互动区 */
+        .quiz-container { display: flex; flex-direction: column; gap: 16px; margin-top: 10px; }
+        .quiz-item { background: rgba(15, 23, 42, 0.4); padding: 14px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); }
+        .quiz-question { font-size: 14px; font-weight: 600; color: #f8fafc; margin-bottom: 10px; }
+        .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+        .option-btn {
+            background: rgba(30, 41, 59, 0.9); border: 1px solid rgba(148, 163, 184, 0.2);
+            color: #cbd5e1; padding: 10px 14px; border-radius: 8px; text-align: left;
+            font-size: 13px; cursor: pointer; transition: all 0.2s;
+        }
+        .option-btn:active { transform: scale(0.99); }
+        .option-btn.correct { background: rgba(16, 185, 129, 0.15); border-color: var(--success); color: #a7f3d0; }
+        .option-btn.wrong { background: rgba(239, 68, 68, 0.15); border-color: var(--error); color: #fca5a5; }
+        .quiz-explain {
+            font-size: 12px; color: #94a3b8; margin-top: 8px; padding-top: 6px;
+            border-top: 1px dashed rgba(148,163,184,0.1); display: none;
         }
 
-        /* 底部 */
-        footer {
-            text-align: center;
-            padding: 20px;
-            font-size: 12px;
-            color: #64748b;
-            letter-spacing: 1px;
-        }
+        footer { text-align: center; padding: 20px; font-size: 11px; color: #475569; letter-spacing: 1px; font-family: monospace; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
-    <!-- 头部区域 -->
+    <!-- 顶部科幻天际线 -->
     <div class="hero">
-        <h1>Stories of Invention</h1>
-        <p>张江科创 · 时空胶囊</p>
+        <div class="skyline"></div>
+        <div class="hero-content">
+            <h1>Stories of Invention</h1>
+            <p>> Initializing Zhangjiang Time Capsule...</p>
+        </div>
     </div>
 
     <div class="container">
-        <!-- 第一部分：历史传承 -->
-        <div class="card">
-            <h2>科创的足迹</h2>
-            <p class="text-content">
-                从三十年前的农田，到如今的“中国药谷”与“硅谷”。张江科学城的崛起，是无数科研人员日夜奋斗的缩影。书签上的每一道纹路，都见证了中国硬核科技的跨越。
-            </p>
-        </div>
-
-        <!-- 第二部分：交互科技 -->
-        <div class="card">
-            <h2>Invention: 点触未来</h2>
-            <p class="text-content" style="margin-bottom: 10px; font-size: 14px; color: #94a3b8;">
-                轻点下方芯片，查看 AI 视角下的生命科学与集成电路的融合：
-            </p>
-            <div class="chip-interaction">
-                <div class="chip-btn" onclick="activateChip()"></div>
-                <div class="chip-result" id="chipResult">
-                    <span style="text-align:left;">
-                        [ 系统激活 ]<br>
-                        芯片微光闪烁，化作人体经络图。<br>
-                        科技与中医药，在此刻完成跨时空交汇。
-                    </span>
-                </div>
-            </div>
-        </div>
-
-        <!-- 第三部分：时空胶囊（互动） -->
-        <div class="card">
-            <h2>Explore: 写下你的期许</h2>
-            <p class="text-content" style="margin-bottom: 15px; font-size: 14px; color: #94a3b8;">
-                这是一个基于 NFC 触发的数字胶囊。留下你对未来科技的愿望，它将与这枚实体书签一起，被保存下来。
-            </p>
-            <div class="capsule-area">
-                <textarea id="userMsg" placeholder="例如：希望未来我能参与研发治愈癌症的药物..."></textarea>
-                <button class="submit-btn" onclick="saveMessage()">封存胶囊</button>
-                <div class="msg-display" id="msgDisplay"></div>
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        Trust the Process · 张江学区科创比赛作品
-    </footer>
-
-    <!-- 交互逻辑 JS -->
-    <script>
-        // 芯片点击动效
-        function activateChip() {
-            const result = document.getElementById('chipResult');
-            const btn = document.querySelector('.chip-btn');
-            
-            // 按钮闪烁动效
-            btn.style.boxShadow = "0 0 30px #38bdf8";
-            btn.style.border = "2px solid #38bdf8";
-            btn.style.background = "rgba(56, 189, 248, 0.2)";
-
-            // 显示文字
-            result.classList.add('show');
-        }
-
-        // 时空胶囊留言功能
-        function saveMessage() {
-            const msg = document.getElementById('userMsg').value;
-            const display = document.getElementById('msgDisplay');
-
-            if (!msg.trim()) {
-                display.style.color = "#ef4444";
-                display.innerText = "胶囊是空的，请写点什么吧~";
-                return;
-            }
-
-            // 模拟保存过程
-            display.style.color = "#10b981";
-            display.innerText = "正在封存...";
-            
-            setTimeout(() => {
-                display.innerText = "✅ 胶囊已封存！感谢你的参与。";
-                document.getElementById('userMsg').value = ""; // 清空输入框
-                
-                // 这里如果以后学了后端，可以把 msg 发送到服务器
-                // 现在只是前端演示效果
-            }, 1000);
-        }
-    </script>
-</body>
-</html>
+        <!-- 📖 第一部分：科创足迹（包含原汁原味的三大奋斗故事板块） -->
