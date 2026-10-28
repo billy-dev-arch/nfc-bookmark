@@ -358,15 +358,15 @@
                     <div class="quiz-explain">解析：十年磨一剑，这体现了科创中极其珍贵的“长期主义”精神。</div>
                 </div>
 
-                <!-- 题4：书签工艺与植物 -->
+                <!-- 题4：中药叶脉与芯片的类比 (新替换) -->
                 <div class="quiz-item">
-                    <div class="quiz-question">4. 本款书签中间晶莹剔透的部分，不仅包裹了真实的中草药植物，还使用了哪种手工工艺？</div>
+                    <div class="quiz-question">4. 中药的“叶脉经络”和芯片的“集成电路”，这两者在微观世界的本质共同点是？</div>
                     <div class="quiz-options">
-                        <button class="option-btn" onclick="checkAnswer(this, false)">A. 陶瓷烧制</button>
-                        <button class="option-btn" onclick="checkAnswer(this, true)">B. 环氧树脂滴胶（Resin）</button>
-                        <button class="option-btn" onclick="checkAnswer(this, false)">C. 传统宣纸装裱</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false)">A. 它们都是由纯金属制造的坚硬结构</button>
+                        <button class="option-btn" onclick="checkAnswer(this, true)">B. 它们都是高效传输能量与信息的高速通道</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false)">C. 它们在肉眼下都能清晰看到纳米级的颗粒</button>
                     </div>
-                    <div class="quiz-explain">解析：滴胶工艺能完美防腐并永久保存植物的自然形态，结合现代审美。</div>
+                    <div class="quiz-explain">解析：自然界的叶脉负责输送水分与养料，人造的芯片电路负责传输电信号与数据。二者在微观世界中，都扮演着“高效传输”的枢纽角色，这也是本款文创设计“古今交汇”的灵感来源。</div>
                 </div>
 
                 <!-- 题5：科技与中医药融合 -->
@@ -451,7 +451,7 @@
             });
         }
 
-        // 3. 趣味问答逻辑 (已支持多题目)
+        // 3. 趣味问答逻辑
         function checkAnswer(btn, isCorrect) {
             const quizItem = btn.closest('.quiz-item');
             const buttons = quizItem.querySelectorAll('.option-btn');
@@ -463,7 +463,6 @@
             } else {
                 btn.classList.add('wrong');
                 buttons.forEach(b => {
-                    // 如果字符串里包含 true，说明是正确选项，高亮它
                     if(b.getAttribute('onclick').includes('true')) b.classList.add('correct');
                 });
             }
